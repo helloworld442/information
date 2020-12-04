@@ -1,0 +1,27 @@
+#include <stdio.h>
+ 
+int main() {
+    int score[1001];
+	int rank[1001];
+	int count = 0;
+	int n;
+	scanf("%d",&n);
+	for(int k = 0; k < n; k++) {
+		scanf("%d",&score[k]);
+	}
+	for(int i = 0; i < n; i++) {
+		count = 1;
+		//scanf("%d",&score[i]);
+		for(int j = 0; j < n; j++) {
+			if(score[i] < score[j]) {
+				count++;
+			}
+		}
+		rank[i] = count;
+	}
+	for(int i = 0; i < n; i++) {
+		printf("%d %d\n",score[i],rank[i]);
+	}
+    return 0;
+}
+
