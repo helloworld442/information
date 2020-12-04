@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+int checkPrime( int aary[], int n)
+{
+	int i=0, count=0,count2=0,j;
+	
+	// code 
+	for(j = 0; j < n; j++){ 
+			
+		if (aary[j] == 2) count ++;
+		
+		for(i = 3; i <= aary[j]; i+=2) {
+			if(aary[j] % i == 0)
+				break;
+		}
+	
+		if (i==aary[j]) count2++;
+		//else return 0;
+	}
+	
+	
+	
+
+	return count + count2;
+}
+
+
+
+int main() {
+	int ary[100000];
+	int i;
+	int n;
+	int point = 0; 
+	scanf("%d",&n);
+	for(i = 0; i < n; i++) {
+		scanf("%d",&ary[i]);
+	}
+	
+	printf("%d", checkPrime(ary, n));
+
+	
+	return 0;
+}
