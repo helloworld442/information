@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+	int k,n;
+	char ary[201];
+	scanf("%s",ary);
+	n = strlen(ary);
+	k = n % 3;
+	for(int i = 0; i < n; i++) {
+		if((i % 3 == k) && i > 0) printf(",");
+		printf("%c",ary[i]);
+	}
+	
+	
+	
+	return 0;
+} 
