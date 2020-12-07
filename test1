@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+	int ary[100][100] = {0, };
+	int n,m,k,num,a,b;
+	int temp=0,count=0,sum=0;
+	scanf("%d %d %d %d",&n,&m,&num,&k);
+	for(int i = 0; i < m; i++) {
+		scanf("%d %d",&a,&b);	
+		ary[a][b] = 1;
+		ary[b][a] = 1;
+	}
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			if(i == num) {
+				sum += ary[num][j];
+				if(ary[num][j] == 1) {
+					count++;
+					temp = j;
+					j = i;
+					sum += ary[temp][i];
+				}
+				if(count == k){
+					break;
+				}
+			}
+		}
+	}
+	printf("%d",sum);
+	return 0;
+} 
