@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+int checkPrime( int aary[], int n)
+{
+	int i=0, count=0,j;
+	// code 
+	
+	
+	
+	for(j = 0; j < n; j++){ 
+		int sq;
+		if(aary[j] == 2 || aary[j] == 3) {
+			count++;
+		}
+		else {
+			sq = (int)sqrt(aary[j]);
+			//printf("sq is %d\n", sq);
+			for(i = 2; i <= sq; i+=1) {
+			// 2부터 sq까지 aary[j]값을 나눠보기 
+			// 나눠보다가 나누어 떨어지면 소수가 아니다. 그러므로 반복을 중단 한다. 
+				if(aary[j] % i == 0) {
+					break;
+				}
+			
+			}
+		// 만약 소수였다면 위의 for문은 끝까지 도달했을 것이다. 고로 i는 sq와 같을 것이다. 
+	    //결국 소수인지 아닌지 판단은 for 문이 끝나고 나서야 판단할 수 있다. 
+			if(i == sq + 1) {
+				//printf("i is %d, sq is %d\n", i, sq);
+				count++;
+			}
+		}
+	}
+	
+	return count;
+}
+
+
+
+int main() {
+	int ary[10000];
+
+	int i;
+	int n=1;
+	int point = 0; 
+	scanf("%d",&n);
+	for(i = 0; i < n; i++) {
+		scanf("%d",&ary[i]);
+	}
+	
+	printf("%d", checkPrime(ary, n));
+
+	
+	return 0;
+}
