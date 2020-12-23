@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+int func( int a,int b );
+int main() {
+	func(2,4);
+	return 0;
+}
+int func(int a, int b){
+	int cnt=2;
+	while(cnt <= a && cnt <= b){
+		if((a % cnt != 0) || (b % cnt != 0)){
+			cnt++;
+		}
+		else {
+			a /= cnt;
+			b /= cnt;
+		}
+	}
+	printf("%d %d",a,b);
+} 
