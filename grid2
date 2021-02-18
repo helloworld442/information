@@ -1,0 +1,28 @@
+import pygame,gridClass
+
+pygame.init()
+WHITE=(255,255,255);GRAY=(150,150,150)
+WIDTH = 800;HEIGHT=800
+screen = pygame.display.set_mode((WIDTH,HEIGHT))
+screen.fill(WHITE)
+pygame.display.update()
+
+class myGrid(gridClass.Grid):
+    def __init__(self,off,w,h,startx,starty,c):
+        gridClass.Grid.__init__(self,off,w,h,startx,starty)
+        self.c = c
+    def drawing(self):
+        for h1,h2 in self.hLine:
+            pygame.draw.line(screen,self.c,h1,h2,10)
+        for v1,v2 in self.vLine:
+            pygame.draw.line(screen,self.c,v1,v2,10)
+
+g = myGrid(100,400,400,0,0,GRAY)
+
+g.drawing()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    pygame.display.update()
+
