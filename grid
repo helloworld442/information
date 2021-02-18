@@ -1,0 +1,22 @@
+# import pygame
+
+# pygame.init()
+# WHITE=(255,255,255);GRAY=(150,150,150)
+# screen = pygame.display.set_mode((800,400))
+# screen.fill(WHITE)
+# pygame.display.update()
+
+class Grid():
+    def __init__(self,off,w,h,startx,starty):#off = 간격, w = 너비(가로), h = 높이(세로)
+        self.hLine = [] # hLine = 수평 (가로선)
+        self.vLine = [] # vLine = 수직 (세로선)
+        for i in range(0, (h // off)+1):
+            self.hLine.append([(startx,off*i),(w,off*i)])
+            #print('{}'.format(self.hLine[i]))
+            #print(self.hLine[i])
+        for j in range(0,(w // off)+1):
+            self.vLine.append([(off*j,starty),(off*j,w)])
+            #print('{}'.format(self.vLine[j]))
+                
+#d1 = Grid(150,1500,1500)
+            
