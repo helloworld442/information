@@ -2,11 +2,46 @@ import pygame,gridClass
 
 pygame.init()
 WHITE=(255,255,255);GRAY=(150,150,150)
-WIDTH = 800;HEIGHT=800
+WIDTH = 600;HEIGHT=600;OFF = 150;STARTX = 0;STARTY = 0;cnt=0;BLACK = (0,0,0)
+t = ["0","1","2","3","4","5","6","7","8","9"]
+xLine=[]
+yLine=[]
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
-screen.fill(WHITE)
+screen.fill(BLACK)
 pygame.display.update()
 
+
+#글씨 만들기 부분
+def font(n):
+    # setFont = pygame.font.SysFont("Times",40)
+    # word = setFont.render(t[n],True,(255,255,255))
+    # for i in range(0,5):
+    #     xLine.append(STARTX+OFF*i)
+    #     #print(xLine[i])
+    # for j in range(0,5):
+    #     yLine.append(STARTY+OFF*j)
+    #     #print(yLine[j])
+    return n
+    def font2(x,y):
+        setFont = pygame.font.SysFont("Times",40)
+        word = setFont.render(t[],True,(255,255,255))
+        for i in range(0,5):
+            xLine.append(STARTX+OFF*i)
+            #print(xLine[i])
+        for j in range(0,5):
+            yLine.append(STARTY+OFF*j)
+        # for i in range(0,4):
+        #     #print((xLine[i] + xLine[i+1]) // 2)
+        #     for j in range(0,4):
+        #         #print((xLine[i] + xLine[i+1]) // 2)
+        textRect = word.get_rect()
+        textRect.centerx = (xLine[x] + xLine[x+1]) // 2
+        textRect.centery = (yLine[y] + yLine[y+1]) // 2
+        screen.blit(word,textRect)
+
+
+
+#그리드 만들기 부분
 class myGrid(gridClass.Grid):
     def __init__(self,off,w,h,startx,starty,c):
         gridClass.Grid.__init__(self,off,w,h,startx,starty)
@@ -17,12 +52,23 @@ class myGrid(gridClass.Grid):
         for v1,v2 in self.vLine:
             pygame.draw.line(screen,self.c,v1,v2,10)
 
-g = myGrid(100,400,400,0,0,GRAY)
+g = myGrid(OFF,WIDTH,HEIGHT,STARTX,STARTY,GRAY)
 
 g.drawing()
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                column_index = event.pos[0] // OFF
+                row_index = event.pos[1] // OFF
+                font2(column_index,row_index)
+                print(column_index, row_index)
+            if event.button == 4:
+                screen.fill(BLACK)
+                g.drawing()
+                font(cnt%10)
+                cnt += 1
     pygame.display.update()
-
